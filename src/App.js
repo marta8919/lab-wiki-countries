@@ -1,23 +1,34 @@
 import './App.css';
+import React, { Component } from 'react'
 import Navbar from './components/Navbar'
 import CountriesList from './components/CountriesList'
-import countries from './countries.json'
-import {Switch, Route} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import CountryDetails from './components/CountriesList'
+import {Container, Row, Col} from 'react-bootstrap' 
 
-function App() {
-  return (
-    <>
-    <Navbar/>
-    <CountriesList countries={countries}/>
-    <Switch>
-      <Route exact path="/:id" render={(props)=>{
-        <CountryDetails {...props} country={this.state.country}/>
-      }} />
-    </Switch>
-    
-    </>
-  );
+
+export default class App extends Component {
+
+  state = {
+    countries: []
+  }
+
+  render() {
+    const {countries} = this.state
+
+    return (
+      <>
+      <Navbar />
+      <Container>
+          <Row>
+              <Col>
+                <CountriesList countries={countries} />
+              </Col>
+          </Row>
+       </Container>
+       </>
+
+    )
+  }
 }
 
-export default App;
